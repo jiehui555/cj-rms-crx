@@ -1,4 +1,4 @@
-const SERVER_URL = 'http://ghtechgz.com:8089/plus.php/api/rms/submit';
+const SERVER_URL = 'http://localhost:8000/plus.php/api/rms/submit';
 
 // 从 storage 获取 token
 function getToken() {
@@ -10,7 +10,7 @@ function getToken() {
 }
 
 // 发送 HTML 到服务器
-async function sendHTMLToServer(html, url) {
+async function sendHTMLToServer(url, html, resume) {
   try {
     const token = await getToken();
 
@@ -21,8 +21,9 @@ async function sendHTMLToServer(html, url) {
         'Authorization': token ? `Bearer ${token}` : ''
       },
       body: JSON.stringify({
-        html: html,
         url: url,
+        html: html,
+        resume: resume,
         timestamp: new Date().toISOString()
       })
     });
@@ -43,13 +44,11 @@ async function sendHTMLToServer(html, url) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'captureHTML') {
     const html = message.html;
+    const resume = message.resume;
     const url = sender.tab.url;
 
-    console.log('收到页面 HTML，长度：', html.length);
-    console.log('来自 url：', url);
-
     // 发送 HTML 到服务器
-    sendHTMLToServer(html, url)
+    sendHTMLToServer(url, html, resume)
       .then((result) => {
         console.log('HTML 发送成功:', result);
         sendResponse({ status: 'success', message: 'HTML 已发送到服务器', data: result });
