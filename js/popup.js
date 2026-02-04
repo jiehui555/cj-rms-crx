@@ -26,8 +26,32 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // todo 发送登录请求
-        const url = "http://localhost:8000/plus.php/api/rms/login";
+        // 发送登录请求
+        const url = "http://ghtechgz.com:8089/plus.php/api/rms/login";
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 登录成功
+                chrome.storage.local.set({ token: data.data.token, username: data.data.username }, () => {
+                    location.reload();
+                });
+            } else {
+                // 登录失败
+                alert(data.message || '登录失败');
+            }
+        })
+        .catch(error => {
+            console.error('登录请求失败:', error);
+            alert('登录请求失败，请检查网络');
+        });
     });
 
     // mainForm 提交事件
