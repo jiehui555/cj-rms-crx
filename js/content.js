@@ -23,8 +23,11 @@ button.addEventListener('click', async () => {
       html: htmlContent
     });
 
-    console.log('后台回复：', response);
-    alert('已成功发送：' + response.status);
+    if (response.status === 'success') {
+      alert('HTML 已发送到服务器');
+    } else {
+      alert('发送失败：' + response.message);
+    }
   } catch (error) {
     console.error('发送失败：', error);
     alert('发送失败：' + error.message);

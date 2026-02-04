@@ -1,4 +1,4 @@
-const SERVER_URL = 'http://localhost:8000/plus.php/api/rms/submit';
+const SERVER_URL = 'http://ghtechgz.com:8089/plus.php/api/rms/submit';
 
 // 从 storage 获取 token
 function getToken() {
