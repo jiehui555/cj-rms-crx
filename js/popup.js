@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // 清空 token、name、password
+        // 清空 token、username
         chrome.storage.local.remove(['token', 'username'], () => {
             location.reload();
         });
