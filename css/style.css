@@ -1,0 +1,20 @@
+body {
+    min-width: 300px;
+    padding-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.default-color {
+    color: white;
+}
+
+.color-danger {
+    color: red;
+}
