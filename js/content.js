@@ -15,7 +15,8 @@ button.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
 button.addEventListener('click', async () => {
   try {
     // 获取当前页面的完整 HTML 源码
-    const htmlContent = document.documentElement.outerHTML;
+    // const htmlContent = document.documentElement.outerHTML;
+    const htmlContent = document.body.innerText;
 
     // 发送消息到 background.js
     const response = await chrome.runtime.sendMessage({
