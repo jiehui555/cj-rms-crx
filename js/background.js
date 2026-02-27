@@ -10,7 +10,7 @@ function getToken() {
 }
 
 // 发送 HTML 到服务器
-async function sendHTMLToServer(url, html) {
+async function sendHTMLToServer(url, html, text) {
   try {
     const token = await getToken();
 
@@ -23,6 +23,7 @@ async function sendHTMLToServer(url, html) {
       body: JSON.stringify({
         url: url,
         html: html,
+        text: text,
       })
     });
 
@@ -42,10 +43,11 @@ async function sendHTMLToServer(url, html) {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'captureHTML') {
     const html = message.html;
+    const text = message.text;
     const url = sender.tab.url;
 
     // 发送 HTML 到服务器
-    sendHTMLToServer(url, html)
+    sendHTMLToServer(url, html, text)
       .then((result) => {
         console.log('HTML 发送成功:', result);
         sendResponse({ status: 'success', message: 'HTML 已发送到服务器', data: result });
