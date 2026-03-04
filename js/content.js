@@ -36,5 +36,16 @@ button.addEventListener('click', async () => {
   }
 });
 
-// 将按钮添加到页面
-document.body.appendChild(button);
+// 允许的网址
+const allowedUrls = [
+  'https://ehire.51job.com/Revision/',
+  'https://h.liepin.com/resume',
+];
+
+// 获取当前地址
+const currentUrl = window.location.href;
+
+// 如果当前地址符合允许的网址前缀
+if (allowedUrls.some((url) => currentUrl.startsWith(url))) {
+  document.body.appendChild(button);
+}
