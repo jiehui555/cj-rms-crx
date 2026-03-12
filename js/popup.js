@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 发送登录请求
-        const url = "http://ghtechgz.com:8089/plus.php/api/rms/login";
+        const url = "http://198.10.1.90:8089/plus.php/api/rms/login";
 
         fetch(url, {
             method: 'POST',
