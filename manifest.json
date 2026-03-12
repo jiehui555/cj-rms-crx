@@ -1,7 +1,7 @@
 {
     "name": "CJ-Talentflow",
     "description": "用于采集人才信息",
-    "version": "1.0",
+    "version": "1.0.2",
     "manifest_version": 3,
     "action": {
         "default_popup": "popup.html",
