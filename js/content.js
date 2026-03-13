@@ -38,8 +38,8 @@ button.addEventListener('click', async () => {
 
 // 允许的网址
 const allowedUrls = [
-  'https://ehire.51job.com/Revision/',
-  'https://h.liepin.com/resume',
+  'https://ehire.51job.com/Revision/talent/resume/detail',
+  'https://h.liepin.com/resume/showresumedetail',
 ];
 
 // 获取当前地址
